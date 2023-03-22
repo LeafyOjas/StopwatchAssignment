@@ -4,18 +4,17 @@ export const TimerDisplay = () => {
     const timerValues = useContext(TimerContext)
 
     useEffect(() => {
-        if (timerValues.flag) {
-            console.log(timerValues);
+        if (!timerValues.flag) {
             timerValues.timeOut = setTimeout(() => {
                 timerValues.setSeconds((prev) => prev + 1)
             }, 1000);
-            if (timerValues.seconds === 60) {
+            if (timerValues.seconds === 10) {
                 timerValues.setMinutes((prev) => prev + 1)
                 timerValues.setSeconds(0)
             }
 
         }
-    }, [timerValues.flag, timerValues.seconds])
+    })
 
     return <div className="container">
         <h1 className="f-40 letter-spacing">Timer</h1>
