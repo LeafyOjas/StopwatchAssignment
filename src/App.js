@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useState } from 'react';
+import Stopwatch from './components/Stopwatch';
+import TimerContext from './context/TimerContext';
 function App() {
+  const [minutes,setMinutes]=useState(0)
+  const [seconds,setSeconds]=useState(0)
+  const [flag,setFlag]=useState(false)
+  const [lapsList,setLapsList]=useState([])
+  let timeOut;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <TimerContext.Provider value={{minutes,setMinutes,seconds,setSeconds,flag,setFlag,timeOut,lapsList,setLapsList}}>
+    <div className="clock-container">
+      <Stopwatch/>      
     </div>
+    </TimerContext.Provider>
   );
 }
 
